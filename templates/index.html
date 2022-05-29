@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Movie-recommender</title>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/83b3d657a6.js" crossorigin="anonymous"></script>
+
+  <!-- bootstrap scripts -->
+  <!-- bootstreap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <!-- bootstrap 4 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Ubuntu&display=swap"
+    rel="stylesheet">
+</head>
+<style>
+  body{
+    font-family: 'Montserrat', sans-serif;
+}
+#title{
+    background-image: url("https://images.creativemarket.com/0.1.0/ps/6346101/910/607/m2/fpnw/wm1/ragct1knndrxomeatpfqlbb3ivd6mvh0ski2kryahnwuzpnlwtl1z2yqs8w789xm-.jpg?1557131241&s=e9ce94f15bf8ed65823f3e34949924ee");
+    color:white;
+}
+h1{
+    font-weight:800;
+    font-size: 3.5em;
+    line-height: 1.5;
+}
+.container-fluid{
+padding:5% 15% 3% 15%;
+}
+h2{
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 1.5;
+}
+h3{
+    font-weight:800;
+}
+p{
+    color:#8f8f8f;
+}
+
+/* navigation bar */
+
+.navbar{
+    padding-bottom: 4.5rem;
+}
+
+.navbar-brand{
+     font-family: 'Ubuntu';
+     font-weight: bold;
+     font-size: 2.5rem;
+}
+
+.nav-item
+{
+    padding:0 18px;
+}
+
+.container{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.btn:hover{
+  background-color: #5e5f69;
+}
+
+ul{
+text-color:red;
+}
+
+/* Feature section */
+#features{
+    padding:5% 15%;
+    background-color: white;
+    position: relative;
+}
+
+.feature-box{
+    padding:5%;
+    text-align: center;
+}
+.result{
+padding:3% 0%;
+}
+
+.card{
+padding:5% 5%
+}
+
+/* About section */
+
+#about{
+    background-color: #28282e;
+    color: white;
+    padding: 4% 15%;
+    text-align: center;
+}
+
+/* Footer section */
+
+#footer{
+    padding: 1% 10%;
+    text-align: center;
+}
+
+.social-icon{
+    padding: 20px 10px;
+}
+@media (max-width: 990px){
+    #title{
+        text-align: center;
+    }
+}
+
+</style>
+<body>
+    <section id="title">
+
+  <div class="container-fluid">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Movie Recommender</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Title -->
+    <div class="row">
+        <h1>Get new and interesting movies of your choice!</h1>
+    </div>
+
+  </div>
+
+</section>
+
+    <!-- Features -->
+<section id="features">
+
+  <div class="search-box">
+        <form action="/" method="POST" class="search-form">
+            <label for="selected">Select a movie :)</label>
+          <br>
+            <select name="selectedmovie" type="text" placeholder="select movies" required
+                id="selected" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" border-color="black">
+              <option selected>Open this select menu</option>
+                {% for i in movie%}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-dark" class="search-submit">Recommend Me!</button>
+        </form>
+    </div>
+<div class="result">
+  <div class="row">
+  {% for i in details%}
+ {%for j in i%}
+    <div class="col-lg-4 col-md-6">
+   <div class="card" style="width: 18rem;">
+  <img src="{{j['poster']}}" class="card-img-top" alt="image not available">
+  <div class="card-body">
+    <h5 class="card-title"><b>{{j['title']}}</b></h5>
+    <p class="card-text">Plot: {{j['plot']}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" style="color:red;">Release date: {{j['released']}}</li>
+    <li class="list-group-item" style="color:red;">Genre: {{j['genre']}}</li>
+    <li class="list-group-item" style="color:red;">Director: {{j['director']}}</li>
+    <li class="list-group-item" style="color:red;">Actors: {{j['actors']}}</li>
+  </ul>
+</div>
+    </div>
+{% endfor %}
+  {% endfor %}
+    </div>
+</div>
+
+</section>
+
+<section id="about">
+  <h3>
+    About
+  </h3>
+  <p>
+    This site will help you find movies according to the movie of your choice! It will recommend you 6 movies most similar to movie you choose.
+    Do let me know your experience using the site, drop your review at <a href = "mailto: shrutikumari3131@gmail.com"><i>shrutikumari3131@gmail.com</i></a>.
+  </p>
+
+</section>
+<!-- Footer -->
+
+<footer id="footer">
+  <i class="social-icon fa-brands fa-facebook"></i>
+  <i class="social-icon fa-brands fa-twitter"></i>
+  <i class="social-icon fa-brands fa-instagram"></i>
+  <i class="social-icon fa-solid fa-envelope"></i>
+  <p>© Copyright Shruti</p>
+
+</footer>
+
+
+</body>
+
+</html>
